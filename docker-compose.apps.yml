@@ -1,0 +1,36 @@
+name: limin-woms-apps
+
+services:
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env.compose
+    environment:
+      DATABASE_URL: mysql://woms:woms@mariadb:3306/woms
+      OBJECT_STORE_ENDPOINT: http://seaweedfs-s3:8333
+    ports:
+      - '3000:3000'
+    networks:
+      - limin-woms
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    env_file:
+      - .env.compose
+    environment:
+      VITE_API_BASE_URL: http://backend:3000
+    ports:
+      - '5173:5173'
+    networks:
+      - limin-woms
+    restart: unless-stopped
+
+networks:
+  limin-woms:
+    name: limin-woms
+    external: true

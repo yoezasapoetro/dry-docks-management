@@ -1,0 +1,5 @@
+export { routes } from './routes.js'
+export { menu } from './menu.js'
+export { default as DemoListPage } from './pages/DemoListPage.vue'
+export { default as DemoDetailPage } from './pages/DemoDetailPage.vue'
+export { default as DemoDashboardPage } from './pages/DemoDashboardPage.vue'

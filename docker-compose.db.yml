@@ -1,0 +1,50 @@
+name: limin-woms-db
+
+services:
+  mariadb:
+    image: mariadb:13.0
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    environment:
+      MARIADB_DATABASE: woms
+      MARIADB_USER: woms
+      MARIADB_PASSWORD: woms
+      MARIADB_ROOT_PASSWORD: woms-root
+    ports:
+      - '3306:3306'
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    networks:
+      - limin-woms
+    restart: unless-stopped
+
+  seaweedfs:
+
+    image: chrislusf/seaweedfs:4.48
+    command: server -dir=/data -s3 -ip.bind=0.0.0.0 -master.port=9333 -volume.port=8080 -filer.port=8888 -s3.port=8333 -volume.max=8
+    ports:
+      - '9333:9333' # master
+      - '8080:8080' # volume
+      - '8888:8888' # filer
+      - '8333:8333' # s3 gateway
+    volumes:
+      - seaweedfs-data:/data
+    networks:
+      - limin-woms
+    restart: unless-stopped
+
+volumes:
+  mariadb-data:
+  seaweedfs-data:
+
+networks:
+  limin-woms:
+    name: limin-woms
+    external: false

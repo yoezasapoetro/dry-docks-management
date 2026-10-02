@@ -1,0 +1,41 @@
+{
+  "name":"limin-woms",
+  "version":"0.1.0",
+  "private":true,
+  "type":"module",
+  "packageManager":"pnpm@12.6.0",
+  "engines":{
+    "node":"^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev":"pnpm --parallel --filter @limin/backend --filter @limin/frontend dev",
+    "build":"pnpm --filter @limin/backend --filter @limin/frontend build",
+    "start":"pnpm --filter @limin/backend start",
+    "test":"vitest run",
+    "test:unit":"vitest run --project unit",
+    "test:integration":"vitest run --project integration",
+    "test:coverage":"vitest run --coverage",
+    "typecheck":"pnpm -r --no-bail typecheck",
+    "lint":"eslint .",
+    "format":"prettier --write .",
+    "db:migrate":"pnpm --filter @limin/backend db:migrate",
+    "db:revert":"pnpm --filter @limin/backend db:revert",
+    "db:generate":"pnpm --filter @limin/backend db:generate",
+    "infra:up":"docker-compose -f docker-compose.db.yml up -d --wait",
+    "infra:down":"docker-compose -f docker-compose.db.yml down",
+    "verify:pinned":"node scripts/verify-pinned.mjs",
+    "verify:architecture":"node scripts/verify-architecture.mjs",
+    "verify:all":"node scripts/verify-all.mjs",
+    "deploy":"node scripts/deploy.mjs",
+    "rollback":"node scripts/rollback.mjs"
+  },
+  "devDependencies":{
+    "@eslint/js": "^9.31.0",
+    "@vitest/coverage-v8": "^4.1.11",
+    "eslint": "^9.31.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^4.1.11"
+  }
+}

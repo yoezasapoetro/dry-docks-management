@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+@import url('https://fonts.googleapis.com/css2?family=Plus%20Jakarta%20Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair%20Display:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM%20Plex%20Mono:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+@layer base {
+  body {
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+:root,
+.light {
+  --ui-bg: var(--ui-color-neutral-50);
+  --ui-bg-muted: var(--ui-color-neutral-100);
+  --ui-text-inverted: var(--ui-color-neutral-50);
+}
+
+.dark {
+  --ui-text-highlighted: var(--ui-color-neutral-50);
+  --ui-bg-inverted: var(--ui-color-neutral-50);
+  --ui-border-inverted: var(--ui-color-neutral-50);
+  --ui-bg: var(--ui-color-neutral-900);
+  --ui-bg-muted: var(--ui-color-neutral-800);
+  --ui-text-inverted: var(--ui-color-neutral-900);
+}

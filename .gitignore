@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Test output
+coverage/
+
+# Environment. `.env.compose` is committed deliberately: it holds container
+# configuration and local-only credentials, not secrets (contracts.md).
+.env
+.env.local
+.env.*.local
+.env.compose
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.tmp
